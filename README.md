@@ -13,6 +13,6 @@ Execute Dapper queries and sql commands normally
 
 ```
 
-     var person = await connectionAdapter.QueryAsync<Person>(sql, new {Id});
+var person = await connectionAdapter.QueryAsync<Person>(sql, new {Id});
 
  ```
