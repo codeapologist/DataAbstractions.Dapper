@@ -4,10 +4,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Dapper.Connection.Abstractions
+namespace Dapper.Testability.Adapters
 {
-    public interface IDapperConnection : IDbConnection
+    public interface IConnectionAdapter : IDbConnection
     {
+        IDbConnection GetUnderlyingConnection();
+
+        //Dapper Methods
         IEnumerable<T> Query<T>(string sql, object param = null, SqlTransaction transaction = null, bool buffered = true);
         IEnumerable<dynamic> Query(string sql, object param = null, SqlTransaction transaction = null, bool buffered = true);
         int Execute(string sql, object param = null, SqlTransaction transaction = null);
@@ -103,6 +106,8 @@ namespace Dapper.Connection.Abstractions
         IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
         IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
         IEnumerable<TReturn> Query<TReturn>(string sql, Type[] types, Func<object[], TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        //Dapper.Contrib methods
         Task<T> GetAsync<T>(dynamic id, IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         Task<IEnumerable<T>> GetAllAsync<T>(IDbTransaction transaction = null, int? commandTimeout = null) where T : class;
         Task<int> InsertAsync<T>(T entityToInsert, IDbTransaction transaction = null, int? commandTimeout = null, ISqlAdapter sqlAdapter = null) where T : class;

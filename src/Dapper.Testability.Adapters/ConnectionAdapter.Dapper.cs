@@ -1,64 +1,14 @@
-﻿using Dapper.Contrib.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Dapper.Connection.Abstractions
+namespace Dapper.Testability.Adapters
 {
-    public class DapperConnection : IDapperConnection
+    //This partial class is reserved for the Dapper implementation
+    public partial class ConnectionAdapter
     {
-        private readonly IDbConnection _connection;
-
-        public DapperConnection(IDbConnection connection)
-        {
-            _connection = connection ?? throw new ArgumentNullException(nameof(connection));
-        }
-
-        public string ConnectionString
-        {
-            get => _connection.ConnectionString;
-            set => _connection.ConnectionString = value;
-        }
-
-        public int ConnectionTimeout => _connection.ConnectionTimeout;
-
-        public string Database => _connection.Database;
-
-        public ConnectionState State => _connection.State;
-
-        public IDbTransaction BeginTransaction()
-        {
-            return _connection.BeginTransaction();
-        }
-
-        public IDbTransaction BeginTransaction(IsolationLevel il)
-        {
-            return _connection.BeginTransaction(il);
-        }
-
-        public void Close()
-        {
-            _connection.Close();
-        }
-
-        public void ChangeDatabase(string databaseName)
-        {
-            _connection.ChangeDatabase(databaseName);
-        }
-
-        public IDbCommand CreateCommand()
-        {
-            return _connection.CreateCommand();
-        }
-
-        public void Open()
-        {
-            _connection.Open();
-        }
-
-
         public IEnumerable<T> Query<T>(string sql, object param = null, SqlTransaction transaction = null, bool buffered = true) =>
             _connection.Query<T>(sql, param, transaction, buffered);
 
@@ -344,51 +294,5 @@ namespace Dapper.Connection.Abstractions
         public IEnumerable<TReturn> Query<TReturn>(string sql, Type[] types, Func<object[], TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             _connection.Query(sql, types, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
 
-        public Task<T> GetAsync<T>(dynamic id, IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            SqlMapperExtensions.GetAsync<T>(_connection, id, transaction, commandTimeout);
-
-        public Task<IEnumerable<T>> GetAllAsync<T>(IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.GetAllAsync<T>(transaction, commandTimeout);
-
-        public Task<int> InsertAsync<T>(T entityToInsert, IDbTransaction transaction = null, int? commandTimeout = null, ISqlAdapter sqlAdapter = null) where T : class =>
-            _connection.InsertAsync(entityToInsert, transaction, commandTimeout, sqlAdapter);
-
-        public Task<bool> UpdateAsync<T>(T entityToUpdate, IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.UpdateAsync(entityToUpdate, transaction, commandTimeout);
-
-        public Task<bool> DeleteAsync<T>(T entityToDelete, IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.DeleteAsync(entityToDelete, transaction, commandTimeout);
-
-        public Task<bool> DeleteAllAsync<T>(IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.DeleteAllAsync<T>(transaction, commandTimeout);
-
-        public T Get<T>(dynamic id, IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            SqlMapperExtensions.Get<T>(_connection, id, transaction, commandTimeout);
-
-        public IEnumerable<T> GetAll<T>(IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.GetAll<T>(transaction, commandTimeout);
-
-        public long Insert<T>(T entityToInsert, IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.Insert(entityToInsert, transaction, commandTimeout);
-
-        public bool Update<T>(T entityToUpdate, IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.Update(entityToUpdate, transaction, commandTimeout);
-
-        public bool Delete<T>(T entityToDelete, IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.Delete(entityToDelete, transaction, commandTimeout);
-
-        public bool DeleteAll<T>(IDbTransaction transaction = null, int? commandTimeout = null) where T : class =>
-            _connection.DeleteAll<T>(transaction, commandTimeout);
-
-
-
-        public void Dispose()
-        {
-            _connection.Dispose();
-        }
-
-
     }
-
-
 }
