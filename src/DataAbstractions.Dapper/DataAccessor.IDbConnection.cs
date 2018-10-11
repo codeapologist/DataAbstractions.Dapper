@@ -1,9 +1,9 @@
 ﻿using System.Data;
 
-namespace Dapper.Testability.Adapters
+namespace DataAbstractions.Dapper
 {
     //This partial class is reserved for the IDbConnection implementation
-    public partial class ConnectionAdapter
+    public partial class DataAccessor
     {
         public string ConnectionString
         {

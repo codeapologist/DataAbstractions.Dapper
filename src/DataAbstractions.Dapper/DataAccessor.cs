@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data;
 
-namespace Dapper.Testability.Adapters
+namespace DataAbstractions.Dapper
 {
-    public partial class ConnectionAdapter : IConnectionAdapter
+    public partial class DataAccessor : IDataAccessor
     {
         private readonly IDbConnection _connection;
 
-        public ConnectionAdapter(IDbConnection connection)
+        public DataAccessor(IDbConnection connection)
         {
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }

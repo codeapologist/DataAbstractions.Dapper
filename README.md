@@ -1,4 +1,4 @@
-# Dapper.Testability.Adapters
+# DataAbstractions.Dapper
 
 ## Basic Usage
 
@@ -6,13 +6,13 @@ Create a connection adapter
 
 ```csharp
 
-var connectionAdapter = new ConnectionAdapter(new SqlConnection(connectionString));
+var dataAccessor = new DataAccessor(new SqlConnection(connectionString));
         
 ```
 Execute Dapper queries and sql commands normally
 
-```
+```csharp
 
-var person = await connectionAdapter.QueryAsync<Person>(sql, new {Id});
+var person = await dataAccessor.QueryAsync<Person>(sql, new {Id});
 
  ```

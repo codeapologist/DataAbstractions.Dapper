@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using Dapper;
 
-namespace Dapper.Testability.Adapters
+namespace DataAbstractions.Dapper
 {
     //This partial class is reserved for the Dapper implementation
-    public partial class ConnectionAdapter
+    public partial class DataAccessor
     {
         public IEnumerable<T> Query<T>(string sql, object param = null, SqlTransaction transaction = null, bool buffered = true) =>
             _connection.Query<T>(sql, param, transaction, buffered);
