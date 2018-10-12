@@ -1,4 +1,4 @@
-# DataAbstractions.Dapper
+# DataAbstractions.Dapper [![NuGet](https://img.shields.io/nuget/v/DataAbstractions.Dapper.svg)](https://www.nuget.org/packages/DataAbstractions.Dapper/) 
 A light abstraction around Dapper and Dapper.Contrib that also maintains the behavior IDbConnection. 
 ## Basic Usage
 
