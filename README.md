@@ -1,15 +1,15 @@
 # DataAbstractions.Dapper [![NuGet](https://img.shields.io/nuget/v/DataAbstractions.Dapper.svg)](https://www.nuget.org/packages/DataAbstractions.Dapper/) 
-A light abstraction around Dapper and Dapper.Contrib that also maintains the behavior IDbConnection. 
-## Basic Usage
+A light abstraction around Dapper and Dapper.Contrib that also maintains the behavior IDbConnection. This library facilitates a loosely coupled design and unit testing.
+## IDataAccessor Interface
 
-Create a data accessor
+The IDataAccessor interface encapsulates Dapper extension methods.  Just provide the connection to the DataAccessor.
 
 ```csharp
 
 IDataAccessor dataAccessor = new DataAccessor(new SqlConnection(connectionString));
         
 ```
-Execute Dapper queries and sql commands normally.  
+Execute Dapper queries and commands as you would normally.  
 
 ```csharp
 
@@ -17,11 +17,11 @@ var person = await dataAccessor.QueryAsync<Person>(sql, new {Id});
 
  ```
 
- Note:  You need to dispose of the dataAccessor as your would with IDbConnection.
+ Note:   The dataAccessor should be disposed appropriately.
 
-## Dapper.Contrib methods
+## Dapper.Contrib 
 
-IDataAccessor includes Dapper.Contrib methods
+IDataAccessor includes the Dapper.Contrib extension methods
 
 ```csharp
 
@@ -29,12 +29,6 @@ dataAccessor.Insert(new Person { Name = "John Doe" });
 
 ```
 
-## IDbConnection methods
+## Keeps IDbConnection behavior
 
-IDataAccessor implements IDbConnection, so you can access things like the ConnectionTimeout value.
-
-```csharp
-
-var timeout = dataAccessor.ConnectionTimeout;
-
-```
+IDataAccessor implements IDbConnection, so you can access things like the ConnectionTimeout, ConnectionString, and ConnectionState etc.
