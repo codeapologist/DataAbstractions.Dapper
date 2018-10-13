@@ -32,3 +32,9 @@ dataAccessor.Insert(new Person { Name = "John Doe" });
 ## Keeps IDbConnection behavior
 
 IDataAccessor implements IDbConnection, so you can access things like the ConnectionTimeout, ConnectionString, and ConnectionState etc.
+
+If you need access to the actual connection object, use GetUnderlyingConnection(): 
+
+```csharp
+IDbConnection connection = dataAccessor.GetUnderlyingConnection();
+```
