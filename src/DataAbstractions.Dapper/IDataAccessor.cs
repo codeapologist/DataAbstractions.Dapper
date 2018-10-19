@@ -12,9 +12,6 @@ namespace DataAbstractions.Dapper
         IDbConnection GetUnderlyingConnection();
 
         //Dapper Methods
-        IEnumerable<T> Query<T>(string sql, object param = null, SqlTransaction transaction = null, bool buffered = true);
-        IEnumerable<dynamic> Query(string sql, object param = null, SqlTransaction transaction = null, bool buffered = true);
-        int Execute(string sql, object param = null, SqlTransaction transaction = null);
         Task<IEnumerable<dynamic>> QueryAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
         Task<IEnumerable<dynamic>> QueryAsync(CommandDefinition command);
         Task<dynamic> QueryFirstAsync(CommandDefinition command);
