@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 
 namespace DataAbstractions.Dapper
 {
@@ -7,8 +8,8 @@ namespace DataAbstractions.Dapper
     {
         private readonly IDbConnection _connection;
 
-        public DataAccessor(IDbConnection connection)
-        {
+        public DataAccessor(DbConnection connection)
+        {           
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }
 
