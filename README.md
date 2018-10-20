@@ -1,5 +1,6 @@
 # DataAbstractions.Dapper [![NuGet](https://img.shields.io/nuget/v/DataAbstractions.Dapper.svg)](https://www.nuget.org/packages/DataAbstractions.Dapper/) 
-A light abstraction around Dapper and Dapper.Contrib that also maintains the behavior IDbConnection. This library facilitates a loosely coupled design and unit testing.
+A light abstraction around [Dapper](https://github.com/StackExchange/Dapper)
+ and [Dapper.Contrib](https://github.com/StackExchange/Dapper/tree/master/Dapper.Contrib) that also maintains the behavior [IDbConnection](https://docs.microsoft.com/en-us/dotnet/api/system.data.idbconnection). This library facilitates a loosely coupled design and unit testing.
 ## IDataAccessor Interface
 
 The IDataAccessor interface encapsulates Dapper extension methods.  Just provide the connection to the DataAccessor.
