@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>net451;netstandard1.3;netstandard2.0</TargetFrameworks>
-    <Version>1.0.2</Version>
+    <Version>2.0.0</Version>
     <Authors>Andrew Sumido</Authors>
     <Description>A light abstraction around Dapper and Dapper.Contrib that also maintains the behavior IDbConnection. This library facilitates a loosely coupled design and unit testing.</Description>
     <PackageLicenseUrl>https://github.com/codeapologist/DataAbstractions.Dapper/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/codeapologist/DataAbstractions.Dapper</PackageProjectUrl>
     <PackageTags>Dapper Dapper.Contrib IDbConnection Abstraction Unit Testing Interface Testability Tests Mock</PackageTags>
-    <PackageReleaseNotes>To prevent invalid usage, DataAccessor constructor now requires a DbConnection instead of a IDbConnection.  Unless used inappropriately, this is not a breaking change.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added abstraction around GridReader to allow mocking.  This is a breaking change for methods returning GridReader as it now returns IGridReader instead.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
