@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataAbstractions.Dapper
 {
-    public interface IGridReader
+    public interface IGridReader : IDisposable
     {
         /// <summary>
         /// Read the next grid of results, returned as a dynamic object.
@@ -216,12 +216,6 @@ namespace DataAbstractions.Dapper
         /// The command associated with the reader
         /// </summary>
         IDbCommand Command { get; set; }
-
-
-        /// <summary>
-        /// Dispose the grid, closing and disposing both the underlying reader and command.
-        /// </summary>
-        void Dispose();
 
         //Async methods
 

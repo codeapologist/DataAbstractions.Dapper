@@ -47,35 +47,35 @@ namespace DataAbstractions.Dapper
 
         public IEnumerable<TReturn> Read<TFirst, TSecond, TReturn>(Func<TFirst, TSecond, TReturn> func,
             string splitOn = "id", bool buffered = true) =>
-            _gridReader.Read<TFirst, TSecond, TReturn>(func, splitOn, buffered);
+            _gridReader.Read(func, splitOn, buffered);
 
         public IEnumerable<TReturn> Read<TFirst, TSecond, TThird, TReturn>(Func<TFirst, TSecond, TThird, TReturn> func,
             string splitOn = "id", bool buffered = true) =>
-            _gridReader.Read<TFirst, TSecond, TThird, TReturn>(func, splitOn, buffered);
+            _gridReader.Read(func, splitOn, buffered);
 
 
         public IEnumerable<TReturn> Read<TFirst, TSecond, TThird, TFourth, TReturn>(
             Func<TFirst, TSecond, TThird, TFourth, TReturn> func, string splitOn = "id", bool buffered = true) =>
-            _gridReader.Read<TFirst, TSecond, TThird, TFourth, TReturn>(func, splitOn, buffered);
+            _gridReader.Read(func, splitOn, buffered);
 
         public IEnumerable<TReturn> Read<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(
             Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> func, string splitOn = "id",
             bool buffered = true) =>
-            _gridReader.Read<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(func, splitOn, buffered);
+            _gridReader.Read(func, splitOn, buffered);
 
         public IEnumerable<TReturn> Read<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(
             Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> func, string splitOn = "id",
             bool buffered = true) =>
-            _gridReader.Read<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(func, splitOn, buffered);
+            _gridReader.Read(func, splitOn, buffered);
 
         public IEnumerable<TReturn> Read<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(
             Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> func, string splitOn = "id",
             bool buffered = true) =>
-            _gridReader.Read<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(func, splitOn,
+            _gridReader.Read(func, splitOn,
                 buffered);
 
         public IEnumerable<TReturn> Read<TReturn>(Type[] types, Func<object[], TReturn> map, string splitOn = "id",
-            bool buffered = true) => _gridReader.Read<TReturn>(types, map, splitOn, buffered);
+            bool buffered = true) => _gridReader.Read(types, map, splitOn, buffered);
 
         public bool IsConsumed => _gridReader.IsConsumed;
 
