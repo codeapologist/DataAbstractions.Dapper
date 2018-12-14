@@ -8,7 +8,7 @@
     <PackageLicenseUrl>https://github.com/codeapologist/DataAbstractions.Dapper/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/codeapologist/DataAbstractions.Dapper</PackageProjectUrl>
     <PackageTags>Dapper Dapper.Contrib IDbConnection Abstraction Unit Testing Interface Testability Tests Mock</PackageTags>
-    <PackageReleaseNotes>Added abstraction around GridReader to allow mocking.  This is a breaking change for methods returning GridReader as it now returns IGridReader instead.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added abstraction around GridReader to allow mocking.  This is a breaking change for methods returning GridReader as it now returns IGridAccessor instead.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>

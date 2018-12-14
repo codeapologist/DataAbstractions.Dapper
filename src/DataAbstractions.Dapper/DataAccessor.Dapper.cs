@@ -144,11 +144,11 @@ namespace DataAbstractions.Dapper
         public Task<IEnumerable<TReturn>> QueryAsync<TReturn>(string sql, Type[] types, Func<object[], TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             _connection.QueryAsync(sql, types, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
 
-        public async Task<IGridReader> QueryMultipleAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-           new GridReaderAdapter( await _connection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType));
+        public async Task<IGridAccessor> QueryMultipleAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
+           new GridAccessor( await _connection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType));
 
-        public async Task<IGridReader> QueryMultipleAsync(CommandDefinition command) =>
-            new GridReaderAdapter(await _connection.QueryMultipleAsync(command));
+        public async Task<IGridAccessor> QueryMultipleAsync(CommandDefinition command) =>
+            new GridAccessor(await _connection.QueryMultipleAsync(command));
 
         public Task<IDataReader> ExecuteReaderAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
             _connection.ExecuteReaderAsync(sql, param, transaction, commandTimeout, commandType);
@@ -258,11 +258,11 @@ namespace DataAbstractions.Dapper
         public T QuerySingleOrDefault<T>(CommandDefinition command) =>
             _connection.QuerySingleOrDefault<T>(command);
 
-        public IGridReader QueryMultiple(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            new GridReaderAdapter(_connection.QueryMultiple(sql, param, transaction, commandTimeout, commandType));
+        public IGridAccessor QueryMultiple(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
+            new GridAccessor(_connection.QueryMultiple(sql, param, transaction, commandTimeout, commandType));
 
-        public IGridReader QueryMultiple(CommandDefinition command) =>
-            new GridReaderAdapter(_connection.QueryMultiple(command));
+        public IGridAccessor QueryMultiple(CommandDefinition command) =>
+            new GridAccessor(_connection.QueryMultiple(command));
 
         public IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(string sql, Func<TFirst, TSecond, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             _connection.Query(sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
