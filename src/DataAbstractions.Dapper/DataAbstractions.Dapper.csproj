@@ -2,20 +2,20 @@
 
   <PropertyGroup>
     <TargetFrameworks>net451;netstandard1.3;netstandard2.0</TargetFrameworks>
-    <Version>2.0.2</Version>
+    <Version>2.1.0</Version>
     <Authors>Andrew Sumido</Authors>
     <Description>A light abstraction around Dapper and Dapper.Contrib that also maintains the behavior IDbConnection. This library facilitates a loosely coupled design and unit testing.</Description>
     <PackageLicenseUrl>https://github.com/codeapologist/DataAbstractions.Dapper/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/codeapologist/DataAbstractions.Dapper</PackageProjectUrl>
     <PackageTags>Dapper Dapper.Contrib IDbConnection Abstraction Unit Testing Interface Testability Tests Mock Unit Test</PackageTags>
-    <PackageReleaseNotes>Upgraded Dapper and Dapper.Contrib to v1.50.7</PackageReleaseNotes>
+    <PackageReleaseNotes>Upgraded Dapper to v1.60.6  and Dapper.Contrib to v1.60.1</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.7" />
-    <PackageReference Include="Dapper.Contrib" Version="1.50.7" />
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Dapper.Contrib" Version="1.60.1" />
   </ItemGroup>
 
 </Project>
