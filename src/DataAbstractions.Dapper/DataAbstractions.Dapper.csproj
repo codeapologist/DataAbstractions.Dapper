@@ -1,21 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net451;netstandard1.3;netstandard2.0</TargetFrameworks>
-    <Version>2.1.0</Version>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <Version>3.0.0</Version>
     <Authors>Andrew Sumido</Authors>
     <Description>A light abstraction around Dapper and Dapper.Contrib that also maintains the behavior IDbConnection. This library facilitates a loosely coupled design and unit testing.</Description>
-    <PackageLicenseUrl>https://github.com/codeapologist/DataAbstractions.Dapper/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/codeapologist/DataAbstractions.Dapper</PackageProjectUrl>
     <PackageTags>Dapper Dapper.Contrib IDbConnection Abstraction Unit Testing Interface Testability Tests Mock Unit Test</PackageTags>
-    <PackageReleaseNotes>Upgraded Dapper to v1.60.6  and Dapper.Contrib to v1.60.1</PackageReleaseNotes>
+    <PackageReleaseNotes>Upgraded Dapper to v2.0.35  and Dapper.Contrib to v2.0.35. Bumping up major version because Dapper introduced a slight breaking change in version 2.0.4.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <RepositoryUrl>https://github.com/codeapologist/DataAbstractions.Dapper</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.60.6" />
-    <PackageReference Include="Dapper.Contrib" Version="1.60.1" />
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.35" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
