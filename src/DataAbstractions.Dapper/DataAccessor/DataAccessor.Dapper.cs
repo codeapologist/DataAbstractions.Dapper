@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
-using Dapper;
 
 namespace DataAbstractions.Dapper
 {
@@ -145,7 +145,7 @@ namespace DataAbstractions.Dapper
             _connection.QueryAsync(sql, types, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
 
         public async Task<IGridAccessor> QueryMultipleAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-           new GridAccessor( await _connection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType));
+           new GridAccessor(await _connection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType));
 
         public async Task<IGridAccessor> QueryMultipleAsync(CommandDefinition command) =>
             new GridAccessor(await _connection.QueryMultipleAsync(command));

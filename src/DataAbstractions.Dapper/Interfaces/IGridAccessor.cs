@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataAbstractions.Dapper
 {
+
     public interface IGridAccessor : IDisposable
     {
         /// <summary>
