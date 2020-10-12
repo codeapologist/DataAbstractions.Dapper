@@ -39,12 +39,13 @@ INSERT INTO [dbo].[Employee]
            ([Id]
            ,[CompanyId]
            ,[DepartmentId]
-           ,[Name]
+           ,[FirstName]
+           ,[LastName]
            ,[Title])
      VALUES
-           (1, 1, 3, 'John Doe', 'Developer'),
-           (2, 2, 1, 'Jane Doe', 'System Admin'),
-           (3, 3, 2, 'Mike Smith', 'Account Manager')
+           (1, 1, 3, 'John', 'Doe', 'Developer'),
+           (2, 2, 1, 'Jane', 'Doe', 'System Admin'),
+           (3, 3, 2, 'Mike', 'Smith', 'Account Manager')
 GO
 
 

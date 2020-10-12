@@ -35,7 +35,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQueryAsyncOverload1()
+        public async void WorkWithQueryAsyncCmdDefParameter()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -54,6 +54,167 @@ namespace DataAbstractions.Dapper.Tests
         }
 
 
+        [Fact]
+        public async void WorkWithQueryFirstAsync()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var result = await dataAccessor.QueryFirstAsync("select * from Employee where lastname = @LastName order by id", new { LastName = "Doe" }, transaction, null, commandType: System.Data.CommandType.Text);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(1);
+            firstName.Should().Be("John");
+            lastName.Should().Be("Doe");
+        }
+
+        [Fact]
+        public async void WorkWithQueryFirstAsyncCmdDefParameter()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var definition = new CommandDefinition("select * from Employee where lastname = @LastName order by id", new { LastName = "Doe" }, transaction, null, commandType: System.Data.CommandType.Text, CommandFlags.Buffered, default);
+
+            var result = await dataAccessor.QueryFirstAsync(definition);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(1);
+            firstName.Should().Be("John");
+            lastName.Should().Be("Doe");
+        }
+
+        [Fact]
+        public async void WorkWithQueryFirstOrDefaultAsync()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var result = await dataAccessor.QueryFirstOrDefaultAsync("select * from Employee where lastname = @LastName order by id", new { LastName = "Doe" }, transaction, null, commandType: System.Data.CommandType.Text);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(1);
+            firstName.Should().Be("John");
+            lastName.Should().Be("Doe");
+        }
+
+        [Fact]
+        public async void WorkWithQueryFirstOrDefaultAsyncCmdDefParameter()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var definition = new CommandDefinition("select * from Employee where lastname = @LastName order by id", new { LastName = "Doe" }, transaction, null, commandType: System.Data.CommandType.Text, CommandFlags.Buffered, default);
+
+            var result = await dataAccessor.QueryFirstOrDefaultAsync(definition);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(1);
+            firstName.Should().Be("John");
+            lastName.Should().Be("Doe");
+        }
+
+
+        [Fact]
+        public async void WorkWithQuerySingleOrDefaultAsync()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var result = await dataAccessor.QuerySingleOrDefaultAsync("select * from Employee where Id = @Id", new { Id = 2 }, transaction, null, commandType: System.Data.CommandType.Text);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(2);
+            firstName.Should().Be("Jane");
+            lastName.Should().Be("Doe");
+        }
+
+        [Fact]
+        public async void WorkWithQuerySingleOrDefaultAsyncCmdDefParameter()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var definition = new CommandDefinition("select * from Employee where Id = @Id", new { Id = 2 }, transaction, null, commandType: System.Data.CommandType.Text, CommandFlags.Buffered, default);
+
+            var result = await dataAccessor.QuerySingleOrDefaultAsync(definition);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(2);
+            firstName.Should().Be("Jane");
+            lastName.Should().Be("Doe");
+        }
+
+        [Fact]
+        public async void WorkWithQuerySingleAsync()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var result = await dataAccessor.QuerySingleAsync("select * from Employee where Id = @Id", new { Id = 2 }, transaction, null, commandType: System.Data.CommandType.Text);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(2);
+            firstName.Should().Be("Jane");
+            lastName.Should().Be("Doe");
+        }
+
+        [Fact]
+        public async void WorkWithQuerySingleAsyncCmdDefParameter()
+        {
+
+            using var dataAccessor = CreateDataAccessor();
+
+            dataAccessor.Open();
+
+            using var transaction = dataAccessor.BeginTransaction();
+
+            var definition = new CommandDefinition("select * from Employee where Id = @Id", new { Id = 2 }, transaction, null, commandType: System.Data.CommandType.Text, CommandFlags.Buffered, default);
+
+            var result = await dataAccessor.QuerySingleAsync(definition);
+            int? id = result.Id;
+            string firstName = result.FirstName;
+            string lastName = result.LastName;
+            id.Should().Be(2);
+            firstName.Should().Be("Jane");
+            lastName.Should().Be("Doe");
+        }
+
 
         [Fact]
         public async void WorkWithQueryAsyncOfT()
@@ -71,15 +232,7 @@ namespace DataAbstractions.Dapper.Tests
 
         }
 
-        [Fact]
-        public async void WorkWithQuerySingleAsync()
-        {
 
-            using var dataAccessor = CreateDataAccessor();
-            var result = await dataAccessor.QuerySingleAsync<Company>("select * from Company where id = 1", commandType: System.Data.CommandType.Text);
-            var expected = new Company { Id = 1, Name = "Mock Company" };
-            result.Should().BeEquivalentTo(expected);
-        }
 
         [Fact]
         public async void WorkWithExecuteReaderAsync()
