@@ -6,9 +6,9 @@ using Xunit;
 
 namespace DataAbstractions.Dapper.Tests
 {
-    public class DataAccessorShould
+    public class DataAccessorTests
     {
-        public DataAccessorShould()
+        public DataAccessorTests()
         {
         }
 
@@ -18,7 +18,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQueryAsync()
+        public async void QueryAsyncWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -35,7 +35,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQueryAsyncCmdDefParameter()
+        public async void QueryAsyncCmdDefParameterWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -55,7 +55,7 @@ namespace DataAbstractions.Dapper.Tests
 
 
         [Fact]
-        public async void WorkWithQueryFirstAsync()
+        public async void QueryFirstAsyncWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -74,7 +74,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQueryFirstAsyncCmdDefParameter()
+        public async void QueryFirstAsyncCmdDefParameterWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -95,7 +95,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQueryFirstOrDefaultAsync()
+        public async void QueryFirstOrDefaultAsyncWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -114,7 +114,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQueryFirstOrDefaultAsyncCmdDefParameter()
+        public async void QueryFirstOrDefaultAsyncCmdDefParameterWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -136,7 +136,7 @@ namespace DataAbstractions.Dapper.Tests
 
 
         [Fact]
-        public async void WorkWithQuerySingleOrDefaultAsync()
+        public async void QuerySingleOrDefaultAsyncWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -155,7 +155,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQuerySingleOrDefaultAsyncCmdDefParameter()
+        public async void QuerySingleOrDefaultAsyncCmdDefParameterWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -176,7 +176,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQuerySingleAsync()
+        public async void QuerySingleAsyncWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -195,7 +195,7 @@ namespace DataAbstractions.Dapper.Tests
         }
 
         [Fact]
-        public async void WorkWithQuerySingleAsyncCmdDefParameter()
+        public async void QuerySingleAsyncCmdDefParameterWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -217,7 +217,7 @@ namespace DataAbstractions.Dapper.Tests
 
 
         [Fact]
-        public async void WorkWithQueryAsyncOfT()
+        public async void QueryAsyncOfTWorks()
         {
 
             using var dataAccessor = CreateDataAccessor();
@@ -235,7 +235,7 @@ namespace DataAbstractions.Dapper.Tests
 
 
         [Fact]
-        public async void WorkWithExecuteReaderAsync()
+        public async void ExecuteReaderAsyncWorks()
         {
             using var dataAccessor = CreateDataAccessor();
             var reader = await dataAccessor.ExecuteReaderAsync("select * from Company where id = 1");
