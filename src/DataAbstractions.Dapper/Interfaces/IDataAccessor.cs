@@ -6,7 +6,7 @@ namespace DataAbstractions.Dapper
     {
         IDbConnection GetUnderlyingConnection();
 
-        IDataReaderAccessor GetDataReaderAbstraction(IDataReader reader);
+        IDataReaderAccessor GetDataReaderAccessor(IDataReader reader);
     }
 
 

@@ -8,14 +8,14 @@ namespace DataAbstractions.Dapper
     {
         private readonly IDbConnection _connection;
 
-        public DataAccessor(DbConnection connection)
+        public DataAccessor(IDbConnection connection)
         {
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }
 
         public IDbConnection GetUnderlyingConnection() => _connection;
 
-        public IDataReaderAccessor GetDataReaderAbstraction(IDataReader reader)
+        public IDataReaderAccessor GetDataReaderAccessor(IDataReader reader)
         {
             return new DataReaderAccessor(reader);
         }

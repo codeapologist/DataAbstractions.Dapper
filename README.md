@@ -20,6 +20,18 @@ var person = await dataAccessor.QueryAsync<Person>(sql, new {Id});
 
  Note:   The dataAccessor should be disposed appropriately.
 
+ ## IDataReaderAccessor Interface
+
+IDataReaderAccessor encapsulates IDataReader extension methods.  Use GetDataReaderAccessor() to convert the IDataReader object to an IDataReaderAccessor.
+
+```csharp
+
+var dataReader = await dataAccessor.ExecuteReaderAsync(sql);
+var dataReaderAccessor = dataAccessor.GetDataReaderAccessor(dataReader);
+var result = dataReaderAccessor.Parse<Person>();
+        
+```
+
 ## Dapper.Contrib 
 
 IDataAccessor includes the Dapper.Contrib extension methods

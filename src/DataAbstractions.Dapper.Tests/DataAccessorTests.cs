@@ -1,5 +1,6 @@
 using Dapper;
 using FluentAssertions;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using Xunit;
@@ -14,7 +15,7 @@ namespace DataAbstractions.Dapper.Tests
 
         public IDataAccessor CreateDataAccessor()
         {
-            return new DataAccessor(new SqlConnection("Data Source=localhost;Database=TestDb;User ID=sa;Password=t3st#database"));
+            return new DataAccessor(new SqlConnection("Data Source=localhost;Database=TestDb;Integrated Security=True;"));
         }
 
         [Fact]
@@ -302,22 +303,9 @@ namespace DataAbstractions.Dapper.Tests
             using var transaction = dataAccessor.BeginTransaction();
 
             var result = await dataAccessor.QueryAsync<Company>("select * from Company where id = @Id", new { Id = 1 }, transaction, null, commandType: System.Data.CommandType.Text);
-            var expected = new Company { Id = 1, Name = "Mock Company" };
+            var expected = new List<Company> { new Company { Id = 1, Name = "Mock Company" } };
             result.Should().BeEquivalentTo(expected);
 
-        }
-
-
-
-        [Fact]
-        public async void ExecuteReaderAsyncWorks()
-        {
-            using var dataAccessor = CreateDataAccessor();
-            var reader = await dataAccessor.ExecuteReaderAsync("select * from Company where id = 1");
-            var dataReaderAccessor = dataAccessor.GetDataReaderAbstraction(reader);
-            var result = dataReaderAccessor.Parse<Company>();
-            var expected = new Company { Id = 1, Name = "Mock Company" };
-            result.Should().BeEquivalentTo(expected);
         }
     }
 }
